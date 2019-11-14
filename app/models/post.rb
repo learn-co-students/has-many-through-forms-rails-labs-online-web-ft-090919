@@ -12,14 +12,5 @@ class Post < ActiveRecord::Base
   end
 
 
-  def unique_users
-    users_array= []
-    self.users.each do |user|
-      if !users_array.include?(user)
-        users_array << (user)
-      end
-      users_array 
-      #binding.pry
-    end
-  end
+  
 end
