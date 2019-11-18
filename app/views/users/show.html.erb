@@ -1,1 +1,10 @@
 
+<h1><%= @user.username %></h1>
+
+
+<h3>Posts <%= @user.username %> has commented on</h3>
+<ul>
+  <% @user.comments.each do |comment| %>
+    <li><a href="/posts/<%= comment.post.id %>"><%= comment.post.title %></a></li>
+  <% end %>
+</ul>

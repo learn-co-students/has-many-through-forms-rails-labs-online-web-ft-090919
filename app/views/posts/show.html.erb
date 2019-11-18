@@ -1,1 +1,51 @@
 
+<h1><%= @post.title %></h1>
+
+<b>Categories:</b>
+
+<%= @post.categories.map {|c| c.name }.join(", ") %><br>
+
+<p><%= @post.try(:content) %></p>
+
+
+
+<h4>Comments</h4>
+
+<% @post.comments.each do |comment| %>
+
+  <% if comment.content && !comment.content.empty? %>
+    <%= comment.user.username %> says: <%= comment.content %><br>
+  <% end %>
+<% end %>
+
+<hr>
+
+<h4>Users who commented on this post</h4>
+
+<ul>
+  <% @post.commenting_users.each do |commenter| %>
+    <li><a href="/users/<%= commenter.id %>"><%= commenter.username %></a></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h5>New Comment</h5>
+<%= form_for @post.comments.build do |f| %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+
+  <%= f.text_area :content %><br>
+
+  <%= f.label :user_id, "Commenting User" %>
+  <%= f.collection_select(:user_id, User.all, :id, :username, include_blank: true) %>
+
+  <h4>Create New User</h4>
+  <%= f.fields_for :user, User.new do |user_form| %>
+    <%= user_form.label :username %>
+    <%= user_form.text_field :username %>
+  <% end %>
+
+  <br><br>
+
+  <%= f.submit %>
+<% end %>
