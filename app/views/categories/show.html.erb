@@ -1,0 +1,13 @@
+
+<h1><%= @category.try(:name) %></h1>
+
+
+<h3>Related Posts</h3>
+
+<% if @category.posts.count > 0 %>
+
+  <% @category.posts.each do |post| %>
+    <a href="/posts/<%= post.id %>"><%= post.title %></a>
+  <% end %>
+
+<% end %>
