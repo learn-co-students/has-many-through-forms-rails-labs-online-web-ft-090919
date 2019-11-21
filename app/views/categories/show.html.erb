@@ -1,0 +1,12 @@
+<h1>Posts in category '<%= @category.name %>'</h1> #in the header tag show the cat name and showing a string 
+
+<% @category.posts.each do |post|%> #for each cat post do something 
+
+    <p>
+
+<%= link_to post.title, post_path(post)%> #takes 2 args where its going and what your gonna see when you get there 
+
+</p>
+<% end %>
+
+
