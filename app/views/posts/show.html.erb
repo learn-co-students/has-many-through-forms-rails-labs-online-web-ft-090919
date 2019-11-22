@@ -4,8 +4,8 @@
 <%= @post.categories.map(&:name).join(' ') %>
 <br>
 <ul>
-<% @post.comments.each do |c| %>
-    <li><%= c.user.username %> says: <%= c.content %></li>
+<% @post.comments.each do |comment| %>
+    <li><%= comment.user.username %> says: <%= comment.content %></li>
     <% end %>
     </ul>
 
